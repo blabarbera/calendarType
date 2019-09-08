@@ -68,6 +68,10 @@ void calendarType::printDates()
 	bool chkdate = false;
 	dayType day = firstDayOfMonth();
 
+	//Formats output based on day of week the calendar starts on. For instance, if the week starts on a Monday the day specific loop (For loop)
+	//Moves one column to the right (Monday's position) before starting the output (While loop). It then outputs the remaining six days. The copy/paste loop
+	//finishes the output for the remaining rows of the month for all seven days until it reaches the end of the month (getDaysInMonth) using nested
+	//While loops.
 
 	if (day.getDay() == "Sunday")
 	{
@@ -105,7 +109,7 @@ void calendarType::printDates()
 	if (day.getDay() == "Monday")
 
 	{
-		// day specific loop
+		//Day specific loop
 
 		cout << "\n";
 
@@ -169,7 +173,7 @@ void calendarType::printDates()
 
 	{
 
-		// day specific loop
+		//Day specific loop
 
 		cout << "\n";
 
@@ -233,7 +237,7 @@ void calendarType::printDates()
 
 	{
 
-		// day specific loop
+		//Day specific loop
 
 		cout << "\n";
 
@@ -297,7 +301,7 @@ void calendarType::printDates()
 
 	{
 
-		// day specific loop
+		//Day specific loop
 
 		cout << "\n";
 
@@ -361,7 +365,7 @@ void calendarType::printDates()
 
 	{
 
-		// day specific loop
+		//Day specific loop
 
 		cout << "\n";
 
@@ -381,6 +385,10 @@ void calendarType::printDates()
 			if (firstDate.getDay() < firstDate.getDaysInMonth())
 			{
 				firstDate.incrementDate(1);
+			}
+			else
+			{
+				break;
 			}
 			i++;
 		}
@@ -420,7 +428,7 @@ void calendarType::printDates()
 
 	{
 
-		// day specific loop
+		//Day specific loop
 
 		cout << "\n";
 
@@ -449,7 +457,6 @@ void calendarType::printDates()
 		}
 
 		//copypaste loop
-		//while (firstDate.getDay() < firstDate.getDaysInMonth())
 		while (chkdate == false)
 		{
 			i = 0;
@@ -482,8 +489,11 @@ void calendarType::printDates()
 
 dayType calendarType::firstDayOfMonth()
 {
+	//Tomohiko Sakamoto's algorithm for finding the day of the week
+	//https://www.geeksforgeeks.org/tomohiko-sakamotos-algorithm-finding-day-week/
+
 	dayType day;
-	int countResult;
+	int count;
 	int y = getYear();
 	int m = getMonth();
 	int d = 1;
@@ -496,9 +506,9 @@ dayType calendarType::firstDayOfMonth()
 	{
 		static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
 		y -= m < 3;
-		countResult = (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
+		count = (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
 
-		day.setDay(firstDay.weekDays[countResult]);
+		day.setDay(firstDay.weekDays[count]);
 	}
 
 	return day;

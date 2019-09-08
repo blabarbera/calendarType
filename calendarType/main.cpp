@@ -2,7 +2,6 @@
 #include "calendarType.h"
 #include "extDateType.h"
 #include "dayType.h"
-#include "extDateType.h"
 
 using namespace std;
 
